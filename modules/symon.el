@@ -77,6 +77,8 @@ smaller. *set this option BEFORE enabling `symon-mode'.*"
 	   symon-delim-monitor
 	   symon-linux-cpu-monitor
 	   symon-delim-monitor
+	   symon-cpu-monitor
+	   symon-delim-monitor
 	   symon-linux-memory-monitor
 	   symon-delim-monitor
 	   symon-linux-network-rx-monitor
@@ -409,6 +411,14 @@ supoprted in PLIST:
                         (unless (zerop total-diff)
                           (/ (* (- total-diff idle-diff) 100) total-diff))))
                (setq symon-linux--last-cpu-ticks (cons total idle))))))
+
+
+(define-symon-monitor symon-cpu-monitor
+  :display
+  (shell-command-to-string "(bash cpuinfo | sed 1q && echo ' ' && sensors | grep fan1 | bash field 2 ) | tr -d '\n'")
+  )
+
+
 
 (define-symon-monitor symon-linux-memory-monitor
   :index "MEM:" :unit "%" :sparkline t

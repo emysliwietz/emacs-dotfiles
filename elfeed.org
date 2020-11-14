@@ -1,0 +1,24 @@
+* Blogs                                                              :elfeed:
+** News                                                               :news:
+https://news.ycombinator.com/rss
+https://www.tagesschau.de/xml/rss2
+** People                                                           :people:
+*** http://lukesmith.xyz/rss.xml
+** Comics                                                           :comics:
+*** https://www.existentialcomics.com/rss.xml
+*** https://xkcd.com/rss.xml    
+** Politics                                                            :pol:
+*** https://queryfeed.net/tw?q=%40realdonaldtrump
+*** https://queryfeed.net/tw?q=%40nntaleb
+*** https://radishmag.wordpress.com/feed/
+** CyberSec                                                          :cyber:
+*** https://queryfeed.net/tw?q=%40LiveOverflow
+https://queryfeed.net/tw?q=%40kinugawamasato
+https://queryfeed.net/tw?q=%40garethheyes
+https://queryfeed.net/tw?q=%40mikewest
+https://queryfeed.net/tw?q=%40albinowax
+** Youtube                                                              :yt:
+*** Linus Tech Tips
+**** https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw
+
+

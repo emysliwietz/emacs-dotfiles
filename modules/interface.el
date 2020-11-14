@@ -1,4 +1,5 @@
 ;; General interface settings
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -14,6 +15,28 @@
 						    (setq-local global-hl-line-mode
 								nil)))
 			(global-prettify-symbols-mode)
+			(add-hook 'window-configuration-change-hook 'scratch-trans)
+
+			(defun buffer-empty-p (&optional buffer)
+			  (= (buffer-size buffer) 0))
+
+			(defun frame-trans-on ()
+			  (interactive)
+			  (set-frame-parameter (selected-frame) 'alpha '(60 60)))
+
+			(defun frame-trans-off ()
+			  (interactive)
+			  (set-frame-parameter (selected-frame) 'alpha '(100 100)))
+
+			(defun scratch-trans ()
+			  (setq my-buffer (get-buffer "*scratch*"))
+			  (cond ((eq my-buffer (window-buffer (selected-window)))
+				 (if (= (length (window-list)) 1) (frame-trans-on) (frame-trans-off)))
+				((get-buffer-window my-buffer)
+				 (frame-trans-off)) 
+				(t
+				 (frame-trans-off)))
+			  )
 			(tool-bar-mode -1)
 			(scroll-bar-mode -1)
 			(menu-bar-mode 0)
