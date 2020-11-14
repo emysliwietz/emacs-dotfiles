@@ -8,11 +8,19 @@
   (require 'exwm-config)
   (exwm-config-default)
   (require 'exwm-randr)
-  (setq exwm-randr-workspace-output-plist '(1 "DP-1" 2 "HDMI-2" 3 "DVI-1"))
-  (add-hook 'exwm-randr-screen-change-hook
-	    (lambda ()
-	      (start-process-shell-command
-	       "xrandr" nil "xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-0 --off --output DVI-0 --off --output DVI-1 --mode 1920x1080 --pos 0x0 --rotate normal")))
+  (cond ((string= (shell-command-to-string "hostname | tr -d '\n'") "astaroth")
+	 (setq exwm-randr-workspace-output-plist '(1 "DP-1" 2 "HDMI-2" 3 "DVI-0"))
+	 (add-hook 'exwm-randr-screen-change-hook
+		   (lambda ()
+		     (start-process-shell-command
+		      "xrandr" nil "x randr --output eDP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --scale 2x2 --mode 1920x1080 --pos 0x2160 --rotate normal"))) 
+	 )((string= (shell-command-to-string "hostname | tr -d '\n'") "jarvis")
+	   (setq exwm-randr-workspace-output-plist '(1 "DP-1" 2 "HDMI-2" 3 "DVI-1"))
+	   (add-hook 'exwm-randr-screen-change-hook
+		     (lambda ()
+		       (start-process-shell-command
+			"xrandr" nil "xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-0 --off --output DVI-0 --off --output DVI-1 --mode 1920x1080 --pos 0x0 --rotate normal")))
+	   ))
   (exwm-randr-enable)
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
@@ -67,6 +75,7 @@
   (setq exwm-input-global-keys
       `(([?\s-r] . exwm-reset)
 	([?\s-f] . fullscreen)
+	([?\s-F] . toggle-maximize-buffer)
 	([?\s-q] . kill-curr-buffer)
 	([?\s-n] . switchmonitor-next)
 	([?\s-p] . switchmonitor-prev)
@@ -94,6 +103,7 @@
 (add-hook 'exwm-update-title-hook
           (lambda ()
               (exwm-workspace-rename-buffer exwm-title))))
+
 
 
 (provide 'exwm-tweaks)
