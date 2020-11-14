@@ -56,8 +56,10 @@
   (make-thread (require 'languages))
   ;; Statusbar
   (make-thread (require 'symon-tweaks))
-  ;; Dailyplan-mode
+  ;; Encrypted org mode
   (make-thread (require 'encrypted-org-mode))
+  ;; very large file mode
+  (make-thread (require 'vlf))
   )
 
 ;; Make gc pauses faster by decreasing the threshold.

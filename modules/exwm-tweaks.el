@@ -14,6 +14,7 @@
 	      (start-process-shell-command
 	       "xrandr" nil "xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-0 --off --output DVI-0 --off --output DVI-1 --mode 1920x1080 --pos 0x0 --rotate normal")))
   (exwm-randr-enable)
+  (winner-mode t)
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
   (define-key exwm-mode-map (kbd "C-c") nil)
