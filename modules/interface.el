@@ -56,10 +56,15 @@
 (use-package monokai-theme
   :ensure t)
 
+
+(use-package all-the-icons)
+
+
 ;; Modeline
 ;;; Spaceline
 (use-package spaceline
   :ensure t
+  :defer t
   :config
   (make-thread (visual-tweaks))
   (defered-loading)
@@ -71,7 +76,16 @@
   :tight t
   ))
 
-(use-package all-the-icons)
+(use-package spaceline-all-the-icons 
+  :after spaceline
+  :config (spaceline-all-the-icons-theme)
+  (setq spaceline-all-the-icons-separator-type (quote arrow)))
+
+
+(custom-set-faces
+  '(mode-line ((t (:box (:line-width 1 :color "black"))))))
+(setq modeline-height 10)
+
 
 ;;; diminish modes
 (use-package diminish
