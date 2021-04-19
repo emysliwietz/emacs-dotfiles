@@ -27,8 +27,8 @@
       mu4e-attachment-dir "~/Downloads"
       smtpmail-queue-mail nil
       mu4e-compose-in-new-frame t
-      setq message-kill-buffer-on-exit t
-      setq mu4e-compose-dont-reply-to-self t
+      message-kill-buffer-on-exit t
+      mu4e-compose-dont-reply-to-self t
       mu4e-headers-date-format "%Y-%m-%d %H:%M"
       mu4e-use-fancy-chars t)
 
