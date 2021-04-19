@@ -1,3 +1,4 @@
+
 ;; General interface settings
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -59,7 +60,6 @@
 ;;; Spaceline
 (use-package spaceline
   :ensure t
-  :defer t
   :config
   (make-thread (visual-tweaks))
   (defered-loading)
