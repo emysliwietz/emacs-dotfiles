@@ -19,7 +19,7 @@
       mu4e-update-interval 300 ;; second
       mu4e-compose-signature-auto-include nil
       mu4e-view-show-images t
-      mu4e-view-prefer-html t
+      mu4e-view-prefer-html nil
       mu4e-headers-auto-update t
       mu4e-compose-format-flowed t
       smtpmail-stream-type 'starttls

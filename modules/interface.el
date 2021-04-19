@@ -64,7 +64,6 @@
 ;;; Spaceline
 (use-package spaceline
   :ensure t
-  :defer t
   :config
   (make-thread (visual-tweaks))
   (defered-loading)
