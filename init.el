@@ -1,8 +1,3 @@
-(setq gc-cons-threshold (* 50 1000 1000))
-;; Portion of heap used for allocation.  Defaults to 0.1.
-(setq gc-cons-percentage 0.6)
-
-(add-to-list 'load-path "~/.config/emacs/modules")
 (load-theme 'monokai t)
 (setq byte-compile-warnings '(not obsolete))
 

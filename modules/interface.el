@@ -22,7 +22,7 @@
 
 			(defun frame-trans-on ()
 			  (interactive)
-			  (set-frame-parameter (selected-frame) 'alpha '(60 60)))
+			  (set-frame-parameter (selected-frame) 'alpha '(0 0)))
 
 			(defun frame-trans-off ()
 			  (interactive)
@@ -37,9 +37,10 @@
 				(t
 				 (frame-trans-off)))
 			  )
-			(tool-bar-mode -1)
-			(scroll-bar-mode -1)
+			(tool-bar-mode 0)
+			(scroll-bar-mode 0)
 			(menu-bar-mode 0)
+			(tooltip-mode 0)
 			(setq uniquify-buffer-name-style 'forward)
 			)))
 
@@ -54,19 +55,23 @@
 (use-package monokai-theme
   :ensure t)
 
-(load-theme 'monokai t)
-
 ;; Modeline
 ;;; Spaceline
 (use-package spaceline
   :ensure t
-  :defer 1
+  :defer 0
   :config
   (make-thread (visual-tweaks))
   (defered-loading)
   (require 'spaceline-config)
   (setq powerline-default-separator (quote arrow))
-  (spaceline-spacemacs-theme))
+  (spaceline-define-segment all-the-icons
+  "Inserts icon for buffer"
+  (all-the-icons-icon-for-buffer)
+  :tight t
+  ))
+
+(use-package all-the-icons)
 
 ;;; diminish modes
 (use-package diminish
@@ -135,18 +140,15 @@
 
 
 ;;; Visual line mode
-(global-visual-line-mode 1)
-
-;; Startup
-;;; Dashboard
-(use-package dashboard
-  :ensure t
-  :defer t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-items '((recents . 10)))
-  (setq dashboard-banner-logo-title "")
-  )
+(defun highlight-visual-line ()
+  (save-excursion
+    (cons (progn (beginning-of-visual-line) (point))
+          (progn (end-of-visual-line) (point)))))
+(setq hl-line-range-function 'highlight-visual-line)
+;;;; Highlight current row
+(global-hl-line-mode 1)
+;;;; To *visually* wrap lines
+(global-visual-line-mode t)
 
 (global-display-line-numbers-mode t)
 (setq-default display-line-numbers-width 4)

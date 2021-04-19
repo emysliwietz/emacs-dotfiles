@@ -69,7 +69,7 @@
 
 (defun dailyplan()
   (interactive)
-  (find-file (shell-command-to-string "date +'~/pCloudDrive/agenda/dailyplan/%Y/%Y-%m/%Y-%m-%d.org' | tr -d '\n'"))
+  (find-file (shell-command-to-string "date +'~/dp/dailyplan/%Y/%Y-%m/%Y-%m-%d.org' | tr -d '\n'"))
   (end-of-buffer))
 
 ;(add-hook 'find-file-hook 'dailyplan-hook)
