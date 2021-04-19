@@ -13,6 +13,13 @@
 
 (add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
 
+(use-package sentence-navigation
+  :ensure t
+  :defer t
+  :bind  ("M-e" . sentence-nav-forward)
+         ("M-a" . sentence-nav-backward)
+  )
+
 ;;; Switch window
 (use-package switch-window
   :ensure t

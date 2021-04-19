@@ -1,5 +1,5 @@
 ;; Email
-(add-to-list 'load-path "/home/user/dox/install/mu/mu4e")
+;(add-to-list 'load-path "/home/user/dox/install/mu/mu4e")
 
 (require 'mu4e)
 (require 'smtpmail)
@@ -12,22 +12,33 @@
 
 (define-key mu4e-view-mode-map (kbd "f") 'mu4e-view-go-to-url)
 
-(setq mu4e-maildir "~/Maildir"
+(setq mu4e-maildir "~/mail"
       mu4e-trash-folder "/Trash"
       mu4e-refile-folder "/Archive"
-      mu4e-get-mail-command "mbsync -ac ~/.config/mu4e/.mbsyncrc"
+      mu4e-get-mail-command "offlineimap"
       mu4e-update-interval 300 ;; second
       mu4e-compose-signature-auto-include nil
       mu4e-view-show-images t
+      mu4e-view-prefer-html t
+      mu4e-headers-auto-update t
+      mu4e-compose-format-flowed t
       smtpmail-stream-type 'starttls
       mu4e-view-show-addresses t
       mu4e-attachment-dir "~/Downloads"
+      smtpmail-queue-mail nil
+      mu4e-compose-in-new-frame t
+      setq message-kill-buffer-on-exit t
+      setq mu4e-compose-dont-reply-to-self t
+      mu4e-headers-date-format "%Y-%m-%d %H:%M"
       mu4e-use-fancy-chars t)
+
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
 
 ;;; Bookmarks
 (setq mu4e-bookmarks
       `(
-      ("maildir:/e.p.mysliwietz/INBOX" "Inbox" ?i)
+      ("maildir:/egidius/INBOX" "Inbox" ?i)
       ("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
 	("flag:unread" "Unread messages" ?n)
         ("date:today..now" "Today's messages" ?t)
@@ -40,6 +51,7 @@
                         (concat "maildir:" (car maildir)))
                       mu4e-maildir-shortcuts) " OR ")
          "All inboxes" ?I)))
+
 
 
 (require 'org-mu4e)
@@ -106,40 +118,44 @@
 ;;:ensure t
 ;;)
 
-(setq mu4e-contexts
-    `( ,(make-mu4e-context
-	  :name "emysliwietz"
-	  :enter-func (lambda () (mu4e-message "Entering emysliwietz context"))
-          :leave-func (lambda () (mu4e-message "Leaving emysliwietz context"))
-	  ;; we match based on the contact-fields of the message
-	  :vars '( ( user-mail-address	    . "egidius@mysliwietz.de"  )
-                 ( smtpmail-smtp-user . "egidius@mysliwietz.de")
-                 ( smtpmail-mail-address . "egidius@mysliwietz.de")
-                 ( mu4e-sent-folder . "/emysliwietz/Sent" )
-                 ( mu4e-drafts-folder . "/emysliwietz/Drafts" )
-                 ( user-mail-address . "egidius@mysliwietz.de" )
-                 ( user-full-name . "Egidius Mysliwietz" )
-                 ( smtpmail-default-smtp-server . "smtp.strato.de" )
-                 ( smtpmail-local-domain . "strato.de" )
-                 ( smtpmail-smtp-server . "smtp.strato.de" )
-                 ( smtpmail-smtp-service . 587 )
-		   ( user-full-name	    . "Egidius Mysliwietz" )))
-       ,(make-mu4e-context
-	  :name "Uni"
-	  :enter-func (lambda () (mu4e-message "Switch to the Uni context"))
-	  :vars '( ( user-mail-address	     . "e.mysliwietz@student.ru.nl" )
-                 ( smtpmail-smtp-user . "s1000796")
-                 ( smtpmail-mail-address . "e.mysliwietz@student.ru.nl")
-                 ( mu4e-sent-folder . "/uni/Sent" )
-                 ( mu4e-drafts-folder . "/uni/Drafts" )
-                 ( user-full-name . "Egidius Mysliwietz" )
-                 ( smtpmail-local-domain . "ru.nl" )
-                 ( smtpmail-default-smtp-server . "smtp-auth.ru.nl" )
-                 ( smtpmail-smtp-server . "smtp-auth.ru.nl" )
-                 ( smtpmail-smtp-service . 587 )
-		   ( user-full-name	    . "Egidius Mysliwietz" )))
+(require 'email-accounts)
 
-                  ))
+;(setq mu4e-contexts
+;    `( ,(make-mu4e-context
+;	  :name "test"
+;	  :enter-func (lambda () (mu4e-message "Switch to test context"))
+;          :leave-func (lambda () (mu4e-message "Leaving test context"))
+;	  ;; we match based on the contact-fields of the message
+;	  :vars '(
+;		  ( user-full-name               . "test user" )
+;		  ( user-mail-address	         . "test@example.com"  )
+;                 ( smtpmail-mail-address        . "test@example.com")
+;		  ( smtpmail-smtp-user           . "test@example.com")
+;                 ( mu4e-sent-folder             . "/test/Sent" )
+;                 ( mu4e-drafts-folder           . "/test/Drafts" )
+;                 ( smtpmail-default-smtp-server . "smtp.test.com" )
+;                 ( smtpmail-smtp-server         . "smtp.test.com" )
+;		  ( smtpmail-local-domain        . "test.com" )
+;                 ( smtpmail-smtp-service        . 587 )
+;		  ))
+;       ,(make-mu4e-context
+;	  :name "test2"
+;	  :enter-func (lambda () (mu4e-message "Switch to test2 context"))
+;	  :leave-func (lambda () (mu4e-message "Leaving test2 context"))
+;	  :vars '(
+;		  ( user-full-name	         . "Test Testington" )
+;		  ( user-mail-address	         . "test@student.test.nl" )
+;                 ( smtpmail-mail-address        . "test@student.test.nl")
+;		  ( smtpmail-smtp-user           . "s1234567")
+;                 ( mu4e-sent-folder             . "/test2/Sent" )
+;                 ( mu4e-drafts-folder           . "/test2/Drafts" )
+;                 ( smtpmail-default-smtp-server . "smtp-auth.test.nl" )
+;                 ( smtpmail-smtp-server         . "smtp-auth.test.nl" )
+;		  ( smtpmail-local-domain        . "test.nl" )
+;                 ( smtpmail-smtp-service        . 587 )
+;		  ))
+;
+;       ))
 (setq mu4e-context-policy 'pick-first)
   ;; set `mu4e-context-policy` and `mu4e-compose-policy` to tweak when mu4e should
   ;; guess or ask the correct context, e.g.
@@ -150,7 +166,27 @@
 
   ;; compose with the current context is no context matches;
   ;; default is to ask 
-  ;; (setq mu4e-compose-context-policy nil)
+;; (setq mu4e-compose-context-policy nil)
+
+(require 'mu4e-thread-folding)
+
+
+(add-to-list 'mu4e-header-info-custom
+             '(:empty . (:name "Empty"
+                         :shortname ""
+                         :function (lambda (msg) "  "))))
+(setq mu4e-headers-fields '((:empty         .    2)
+                            (:human-date    .   12)
+                            (:flags         .    6)
+                            (:mailing-list  .   10)
+                            (:from          .   22)
+                            (:subject       .   nil)))
+
+(define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
+(define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
+(define-key mu4e-headers-mode-map (kbd "<S-left>")  'mu4e-headers-fold-all)
+(define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
+(define-key mu4e-headers-mode-map (kbd "<S-right>") 'mu4e-headers-unfold-all)
 
 
 (provide 'email)

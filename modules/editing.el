@@ -48,6 +48,11 @@
       :hook (global-company-mode . company-quickhelp-mode)
       :init (setq company-quickhelp-delay 0.8))))
 
+;;; Auto-correct
+;;; C-x a i g (Add inverse global)
+(setq-default abbrev-mode t)
 
+;;; Change major mode when lines are so long they affect performance
+ (global-so-long-mode t)
 
 (provide 'editing)
