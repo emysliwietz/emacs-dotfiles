@@ -19,10 +19,21 @@
       mu4e-update-interval 300 ;; second
       mu4e-compose-signature-auto-include nil
       mu4e-view-show-images t
+      mu4e-view-prefer-html t
+      mu4e-headers-auto-update t
+      mu4e-compose-format-flowed t
       smtpmail-stream-type 'starttls
       mu4e-view-show-addresses t
       mu4e-attachment-dir "~/Downloads"
+      smtpmail-queue-mail nil
+      mu4e-compose-in-new-frame t
+      setq message-kill-buffer-on-exit t
+      setq mu4e-compose-dont-reply-to-self t
+      mu4e-headers-date-format "%Y-%m-%d %H:%M"
       mu4e-use-fancy-chars t)
+
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
 
 ;;; Bookmarks
 (setq mu4e-bookmarks
@@ -40,6 +51,7 @@
                         (concat "maildir:" (car maildir)))
                       mu4e-maildir-shortcuts) " OR ")
          "All inboxes" ?I)))
+
 
 
 (require 'org-mu4e)
