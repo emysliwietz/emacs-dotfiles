@@ -42,5 +42,21 @@
   (dired-quick-sort-setup)
   (setq dired-quick-sort-suppress-setup-warning t))
 
+(use-package openwith
+  :ensure t
+  :defer t
+  :config
+  (setq openwith-associations
+        (cond
+         ((string-equal system-type "darwin")
+          '(("\\.\\(dmg\\|doc\\|docs\\|xls\\|xlsx\\)$"
+             "open" (file))
+            ("\\.\\(mp4\\|mp3\\|webm\\|avi\\|flv\\|mov\\)$"
+             "open" ("-a" "VLC" file))))
+         ((string-equal system-type "gnu/linux")
+          '(("\\.\\(mp4\\|m4a\\|mp3\\|webm\\|avi\\|flv\\|mov\\|pdf\\)$"
+             "xdg-open" (file))))))
+  (openwith-mode +1))
+
 (provide 'dired-tweaks)
 
