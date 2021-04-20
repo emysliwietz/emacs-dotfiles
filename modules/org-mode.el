@@ -192,6 +192,13 @@
 ;;;; Resize images in org-mode
 (setq imagemagick-enabled-types t)
 
+;;;; Paste images
+(use-package org-download
+  :defer t
+  :config
+  (global-set-key (kbd "C-+") 'org-download-clipboard))
+
+
 (defun image-p (obj)
   "Return non-nil if OBJ is an image"
   (eq (car-safe obj) 'image))
@@ -304,5 +311,6 @@ Adapt image size via `iimage-scale-to-fit-width' when the window size changes."
       org-fontify-whole-heading-line t
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t)
+
 
 (provide 'org-mode)
