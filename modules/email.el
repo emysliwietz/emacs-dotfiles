@@ -13,23 +13,24 @@
 (define-key mu4e-view-mode-map (kbd "f") 'mu4e-view-go-to-url)
 
 (setq mu4e-maildir "~/mail"
-      mu4e-trash-folder "/Trash"
-      mu4e-refile-folder "/Archive"
       mu4e-get-mail-command "offlineimap"
       mu4e-update-interval 300 ;; second
       mu4e-compose-signature-auto-include nil
       mu4e-view-show-images t
       mu4e-view-prefer-html nil
+      mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain"
       mu4e-headers-auto-update t
       mu4e-compose-format-flowed t
       smtpmail-stream-type 'starttls
       mu4e-view-show-addresses t
       mu4e-attachment-dir "~/Downloads"
       smtpmail-queue-mail nil
+      smtpmail-queue-dir "~/mail/queue/cur"
       mu4e-compose-in-new-frame t
-      message-kill-buffer-on-exit t
       mu4e-compose-dont-reply-to-self t
       mu4e-headers-date-format "%Y-%m-%d %H:%M"
+      message-kill-buffer-on-exit t
+      mu4e-confirm-quit nil
       mu4e-use-fancy-chars t)
 
 (when (fboundp 'imagemagick-register-types)
@@ -38,13 +39,19 @@
 ;;; Bookmarks
 (setq mu4e-bookmarks
       `(
-      ("maildir:/egidius/INBOX" "Inbox" ?i)
-      ("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
-	("flag:unread" "Unread messages" ?n)
+	("maildir:/egidius/INBOX" "Egidius Inbox" ?E)
+	("maildir:/gmail/INBOX" "Gmail Inbox" ?g)
+	("maildir:/gmx/INBOX" "Gmx Inbox" ?x)
+	("maildir:/radboud/INBOX" "Radboud Inbox" ?r)
+	("maildir:/eindhoven/INBOX" "Eindhoven Inbox" ?e)
+	("maildir:/ntu/INBOX" "NTU Inbox" ?n)
+	("flag:unread AND NOT flag:trashed" "Unread messages" ?U)
+	("flag:unread" "Unread messages" ?u)
         ("date:today..now" "Today's messages" ?t)
         ("date:7d..now" "Last 7 days" ?w)
         ("flag:trashed" "Deleted" ?d)
-        ("mime:image/*" "Messages with images" ?p)
+        ("mime:image/*" "Messages with images" ?i)
+	("mime:application/pdf" "Messages with pdfs" ?p)
         (,(mapconcat 'identity
                      (mapcar
                       (lambda (maildir)
@@ -176,7 +183,7 @@
                          :shortname ""
                          :function (lambda (msg) "  "))))
 (setq mu4e-headers-fields '((:empty         .    2)
-                            (:human-date    .   12)
+                            (:human-date    .   25)
                             (:flags         .    6)
                             (:mailing-list  .   10)
                             (:from          .   22)
