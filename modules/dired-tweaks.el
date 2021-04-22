@@ -29,7 +29,7 @@
     (advice-remove 'dired-next-line (lambda (arg) (dired-display-file)))))
 
 (setq vc-follow-symlinks t
-      dired-listing-switches "-hlt"
+      dired-listing-switches "-ahlt"
       diredp-toggle-find-file-reuse-dir 1
       image-dired-thumb-size 100
       diredp-image-preview-in-tooltip 100
