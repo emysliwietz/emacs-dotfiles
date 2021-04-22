@@ -118,7 +118,7 @@
 
 (use-package openwith
   :ensure t
-  :defer t
+  :defer nil
   :config
   (setq openwith-associations
         (cond
