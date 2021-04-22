@@ -28,8 +28,24 @@
       (advice-add 'dired-next-line :after (lambda (arg) (dired-display-file)))
     (advice-remove 'dired-next-line (lambda (arg) (dired-display-file)))))
 
-(setq vc-follow-symlinks t)
-(setq dired-listing-switches "-lt")
+(setq vc-follow-symlinks t
+      dired-listing-switches "-hlt"
+      diredp-toggle-find-file-reuse-dir 1
+      image-dired-thumb-size 100
+      diredp-image-preview-in-tooltip 100
+      dired-auto-revert-buffer t
+      diredp-hide-details-initially-flag nil
+      dired-hide-details-mode 0)
+
+;(use-package dired-k
+;  ;; use dired-k as alternative to revert buffer. This will refresh git status
+;  :hook (dired-mode . dired-k)
+;  :bind (:map dired-mode-map
+;              ("g" . dired-k)))
+
+(use-package diredful
+  :config (diredful-mode 1))
+
 
 (use-package async
   :ensure t
