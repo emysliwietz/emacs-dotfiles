@@ -194,9 +194,10 @@
 
 ;;;; Paste images
 (use-package org-download
-  :defer t
+  :ensure t
+  :defer nil
   :config
-  (global-set-key (kbd "C-+") 'org-download-clipboard))
+  (define-key org-mode-map (kbd "C-+") 'org-download-clipboard))
 
 
 (defun image-p (obj)
