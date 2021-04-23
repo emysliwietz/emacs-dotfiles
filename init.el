@@ -21,6 +21,8 @@
   (make-thread (require 'search))
   ;; ANSI Term and bash completion
   (make-thread (require 'console))
+  ;; Auto correction
+  (make-thread (require 'auto-correct))
   ;; File shortcuts
   (make-thread (require 'shortcuts))
   ;; Languagetool grammar checking
@@ -104,5 +106,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mode-line ((t (:box (:line-width 1 :color "black")))))
- '(mu4e-thread-folding-child-face ((t (:extend t :background "gray10" :underline)))) '(spaceline-highlight-face ((t (:background "DarkGreen" :foreground "#FFEEEE" :inherit 'mode-line)))))
+ '(mu4e-thread-folding-child-face ((t (:extend t :background "gray10" :underline))))
+ '(spaceline-highlight-face ((t (:background "DarkGreen" :foreground "#FFEEEE" :inherit 'mode-line)))))
  
