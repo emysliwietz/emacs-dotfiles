@@ -166,4 +166,31 @@
 (global-display-line-numbers-mode t)
 (setq-default display-line-numbers-width 4)
 
+
+;;; Unicode emojis
+(if (>= emacs-major-version 27)
+    (set-fontset-font t '(#x1f000 . #x1faff)
+              (font-spec :family "Noto Color Emoji")))
+
+;;;; setting up composition functions for emoji modifiers
+(dolist (items `(((?🇦 . ?🇿) [".[🇦-🇿]+" 0 font-shape-gstring])
+                 ((?🏳 . ?🏴) [".[️‍🌈⚧☠󠀠-󠁿]*" 0 font-shape-gstring])
+                 (?⃣ ["[#*0-9]️⃣" 2 font-shape-gstring])
+                 ;; TODO: I can't make keycap sequences work because I
+                 ;; think they're trying to shape with the wrong font.
+                 ,@(mapcar (lambda (range) (list range [".‍?[🏻-🏿]?[‍️♂♀]*️?" 0 font-shape-gstring]))
+                           (concatenate 'list "☝🎅🏇👂👃👦👧👼💏💑💪🕴🕵🕺🖐🖕🖖🙇🚣🛀🛌🤏🤞🤟🤦🤽🤾🥷🦻👯❤"
+                                        '((?⛹ . ?✍) (?🏂 . ?🏄) (?🏊 . ?🏌) (?👆 . ?👐)
+                                          (?👫 . ?👮) (?👰 . ?👸) (?💁 . ?💇) (?🙅 . ?🙇) (?🙋 . ?🙏)
+                                          (?🚴 . ?🚶) (?🤘 . ?🤜) (?🤰 . ?🤹) (?🤼 . ?🤾) (?🦵 . ?🦹)
+                                          (?🧍 . ?🧏) (?🧒 . ?🧟))) )
+                 (?🧑 [".‍?[🏻-🏿]?[‍⚕⚖✈❤️🌾🍳🍼🎄🎓🎤🎨🏫🏭👦-👩💋💻💼🔧🔬🚀🚒🤝🦯🦰-🦳🦼🦽🧑]*" 0 font-shape-gstring])
+                 ((?👨 . ?👩) [".‍?[🏻-🏿]?[‍⚕⚖✈❤️🌾🍳🍼🎄🎓🎤🎨🏫🏭👦-👩💋💻💼🔧🔬🚀🚒🤝🦯🦰-🦳🦼🦽🧑]*" 0 font-shape-gstring])
+                 ,@(mapcar (lambda (str) (list (elt str 0) (vector str 0 'font-shape-gstring)))
+                           '("😶‍🌫️" "🐈‍⬛" "🐕‍🦺" "🐻‍❄️" "👁️‍🗨️" "😮‍💨" "😵‍💫"))))
+  (set-char-table-range
+   composition-function-table
+   (car items)
+   (list (cadr items))))
+
 (provide 'interface)
