@@ -53,6 +53,13 @@
 (setq-default abbrev-mode t)
 
 ;;; Change major mode when lines are so long they affect performance
- (global-so-long-mode t)
+(global-so-long-mode t)
+
+(use-package ivy-emoji
+     :ensure t
+     :defer t
+     :bind ("s-u" . ivy-emoji))
+
 
 (provide 'editing)
+
