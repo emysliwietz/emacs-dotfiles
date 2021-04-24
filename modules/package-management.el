@@ -7,6 +7,11 @@
 (add-to-list 'package-archives
  	     '("gnu" . "https://elpa.gnu.org/packages/"))
 
+(defun package-refresh-contents-async ()
+  (interactive)
+  (package-refresh-contents t)
+  (message "Refreshing packages"))
+
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
