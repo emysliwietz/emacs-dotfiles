@@ -20,6 +20,20 @@
   (setq ivy-count-format "%d/%d ")
   (setq ivy-display-style 'fancy))
 
+(use-package ivy-rich
+  :ensure t
+  :defer t
+  :init
+  (ivy-rich-mode 1)
+  :config
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  (setq ivy-rich-path-style 'abbrev))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :defer t
+  :init (all-the-icons-ivy-rich-mode 1))
+
 (use-package swiper
   :ensure t
   :defer t

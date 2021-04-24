@@ -99,6 +99,14 @@
   (split-and-follow-vertically)
   (find-file "~/pCloudDrive/agenda/reviews/template.org"))
 
+(defun ceres()
+  (interactive)
+  (find-file "/ssh:user@sermak.xyz:~"))
+
+(defun ceres-root()
+  (interactive)
+  (find-file "/ssh:user@sermak.xyz|sudo:root@sermak.xyz:/"))
+
 (global-set-key (kbd "C-z d") 'dailyplan)
 (global-set-key (kbd "C-z b") 'books)
 (global-set-key (kbd "C-z m") 'movies)
@@ -106,6 +114,9 @@
 (global-set-key (kbd "C-z p") 'projects)
 (global-set-key (kbd "C-z t") 'thesis)
 (global-set-key (kbd "C-z e") 'mu4e)
+(global-set-key (kbd "C-z s c") 'ceres)
+(global-set-key (kbd "C-z s r") 'ceres-root)
+
 
 
 ;;; Rectangle mark mode 

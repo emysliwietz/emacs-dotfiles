@@ -68,7 +68,6 @@
       (kill-buffer (current-buffer))
     (bury-buffer)
   ))
-(global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
 ;;; move to start and end of buffer
 (global-set-key (kbd "M-n") 'end-of-buffer)
@@ -79,6 +78,32 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 (global-set-key (kbd "C-x C-k k") 'close-all-buffers)
+
+;; Kill unwanted buffers
+(defun kill-if-unwanted (buffer)
+  (let ((b (buffer-name buffer))
+	(unwanted-buffers '(
+			    "*Messages*"
+			    "*Backtrace*"
+			    "*Help*"
+			    "*Warnings*"
+			    "*Compile-Log*"
+			    "*elfeed-log*"
+			    )))
+    (cond ((member b unwanted-buffers) (kill-buffer buffer))
+	  ((string-match "^\*tramp.*\*$" b) (kill-buffer buffer))
+	  ((string-match "\.png$" b) (kill-buffer buffer))
+	  ((string-match "\.jpg$" b) (kill-buffer buffer))
+	  ((string-match "\.jpeg$" b) (kill-buffer buffer))
+	  ((string-match "\.gif$" b) (kill-buffer buffer))
+	  )))
+
+
+(defun kill-unwanted-buffers ()
+  (interactive)
+  (mapc 'kill-if-unwanted (buffer-list)))
+
+(global-set-key (kbd "C-x k") 'kill-unwanted-buffers)
 
 ;;; Window splitting
 (defun split-and-follow-horizontally ()
