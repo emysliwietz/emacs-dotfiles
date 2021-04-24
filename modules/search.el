@@ -20,19 +20,14 @@
   (setq ivy-count-format "%d/%d ")
   (setq ivy-display-style 'fancy))
 
-(use-package ivy-rich
+(use-package all-the-icons-ibuffer
   :ensure t
-  :defer t
-  :init
-  (ivy-rich-mode 1)
-  :config
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  (setq ivy-rich-path-style 'abbrev))
+  :init (all-the-icons-ibuffer-mode 1))
 
-(use-package all-the-icons-ivy-rich
-  :ensure t
-  :defer t
-  :init (all-the-icons-ivy-rich-mode 1))
+(use-package all-the-icons-ivy
+:ensure t
+:config
+(all-the-icons-ivy-setup))
 
 (use-package swiper
   :ensure t
