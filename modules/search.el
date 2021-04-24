@@ -61,12 +61,15 @@
   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 ;;; smex
-(use-package smex
+(use-package amx
   :ensure t
   :defer t
-  :init (smex-initialize)
+  :init (amx-initialize)
+  :config
+  (setq amx-backend 'ivy
+	-show-key-bindings t)
   :bind
-  ("M-x" . smex))
+  ("M-x" . amx))
 
 ;;; switch buffer
 (global-set-key (kbd "C-x b") 'ido-switch-buffer)
