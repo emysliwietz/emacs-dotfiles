@@ -16,9 +16,10 @@
   :bind (("C-x C-b" . ivy-switch-buffer))
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
-  (setq ivy-display-style 'fancy))
+  (setq ivy-use-virtual-buffers t
+	ivy-count-format "%d/%d "
+	ivy-height 20
+	ivy-display-style 'fancy))
 
 (use-package all-the-icons-ibuffer
   :ensure t
@@ -27,7 +28,9 @@
 (use-package all-the-icons-ivy
 :ensure t
 :config
-(all-the-icons-ivy-setup))
+(all-the-icons-ivy-setup)
+(setq all-the-icons-ivy-file-commands
+      '(counsel-find-file counsel-file-jump counsel-recentf counsel-projectile-find-file counsel-projectile-find-dir)))
 
 (use-package swiper
   :ensure t
