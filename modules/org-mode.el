@@ -197,7 +197,8 @@
   :ensure t
   :defer nil
   :config
-  (define-key org-mode-map (kbd "C-+") 'org-download-clipboard))
+  :bind
+  ("C-+" . org-download-clipboard))
 
 
 (defun image-p (obj)

@@ -7,8 +7,7 @@
 (setq
  message-send-mail-function 'smtpmail-send-it
  starttls-use-gnutls t
- mu4e-sent-messages-behavior 'sent
- )
+ mu4e-sent-messages-behavior 'sent)
 
 (define-key mu4e-view-mode-map (kbd "f") 'mu4e-view-go-to-url)
 

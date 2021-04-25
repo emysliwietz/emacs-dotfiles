@@ -61,8 +61,10 @@ Not assuming that url is in title like in Keepass Helper extension, for privacy.
 (defun all-the-icons-ivy--icon-for-exwm (mode buffname)
   "Hard-code some icons for common programs."
   (if (string-equal (format "%s" mode) "exwm-mode")
-      (cond ((s-prefix? "Signal" buffname)
-	    (all-the-icons-faicon "comment" :face 'all-the-icons-blue-alt))
+      (cond ((string-equal "Signal" buffname)
+	     (all-the-icons-faicon "comment" :face 'all-the-icons-blue-alt))
+	    ((string-equal "st" buffname)
+	     (all-the-icons-faicon "terminal" :face 'all-the-icons-green))
 	    )))
 
 (defun all-the-icons-ivy--buffer-transformer (b s)
@@ -80,7 +82,7 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
                                        (funcall
                                         all-the-icons-ivy-family-fallback-for-buffer
                                         all-the-icons-ivy-name-fallback-for-buffer)))
-            (all-the-icons-ivy--buffer-propertize b s))))
+            (all-the-icons-ivy--buffer-propertize b s)))))
 
 (use-package swiper
   :ensure t

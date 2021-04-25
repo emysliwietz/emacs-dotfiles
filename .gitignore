@@ -1,3 +1,4 @@
 elfeeddb/*
 modules/email-accounts.el
+modules/email-refile.el
 
