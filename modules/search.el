@@ -61,7 +61,7 @@ Not assuming that url is in title like in Keepass Helper extension, for privacy.
 (defun all-the-icons-ivy--icon-for-exwm (mode buffname)
   "Hard-code some icons for common programs."
   (if (string-equal (format "%s" mode) "exwm-mode")
-      (cond ((string-equal "Signal" buffname)
+      (cond ((string-prefix-p "Signal" buffname)
 	     (all-the-icons-faicon "comment" :face 'all-the-icons-blue-alt))
 	    ((string-equal "st" buffname)
 	     (all-the-icons-faicon "terminal" :face 'all-the-icons-green))
