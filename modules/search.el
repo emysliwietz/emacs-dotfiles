@@ -32,6 +32,7 @@
 :config
 (setq all-the-icons-ivy-file-commands
       '(counsel-find-file counsel-file-jump counsel-recentf counsel-projectile-find-file counsel-projectile-find-dir))
+
 ;; Overwrite some stuff for exwm and icons in Firefox
 (defun all-the-icons-ivy--icon-for-firefox (mode buffname)
   "Apply `all-the-icons-icon-for-url' on Firefox window in exwm-mode.
@@ -39,9 +40,30 @@ Assuming that url is in title like in Keepass Helper extension."
   (if (string-equal (format "%s" mode) "exwm-mode")
       (let ((bnl (split-string buffname " - "))
 	    (fnl (split-string buffname " — ")))
-      (if (string-equal (format "%s" (last fnl)) "(Mozilla Firefox)")
+	    (let ((browser (format "%s" (last fnl))))
+      (if (or (string-equal browser "(Mozilla Firefox)") (string-equal browser "(Mozilla Firefox (Private Browsing))"))
 	  (all-the-icons-icon-for-url (first bnl) :face 'all-the-icons-blue)
-	  ))))
+	)))))
+
+;; Overwrite some stuff for exwm and icons in Tor Browser
+(defun all-the-icons-ivy--icon-for-tor (mode buffname)
+  "Apply youtube icon on Tor Browser window in exwm-mode.
+Not assuming that url is in title like in Keepass Helper extension, for privacy."
+  (if (string-equal (format "%s" mode) "exwm-mode")
+      (let ((bnl (split-string buffname " - ")))
+	(if (string-equal (format "%s" (last bnl)) "(Tor Browser)")
+	    (if (string-equal (format "%s" (last bnl 2)) "(YouTube Tor Browser)")
+		(all-the-icons-icon-for-url "youtube.com" :face 'all-the-icons-red)
+	      (all-the-icons-faicon "user-secret" :face 'all-the-icons-red)
+	      )))))
+
+;; Overwrite some stuff for exwm
+(defun all-the-icons-ivy--icon-for-exwm (mode buffname)
+  "Hard-code some icons for common programs."
+  (if (string-equal (format "%s" mode) "exwm-mode")
+      (cond ((s-prefix? "Signal" buffname)
+	    (all-the-icons-faicon "comment" :face 'all-the-icons-blue-alt))
+	    )))
 
 (defun all-the-icons-ivy--buffer-transformer (b s)
   "Return a candidate string for buffer B named S preceded by an icon.
@@ -53,10 +75,12 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
                                        (all-the-icons-ivy--icon-for-mode mode)
                                        (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
 				       (all-the-icons-ivy--icon-for-firefox mode s)
+				       (all-the-icons-ivy--icon-for-tor mode s)
+				       (all-the-icons-ivy--icon-for-exwm mode s)
                                        (funcall
                                         all-the-icons-ivy-family-fallback-for-buffer
                                         all-the-icons-ivy-name-fallback-for-buffer)))
-            (all-the-icons-ivy--buffer-propertize b s)))))
+            (all-the-icons-ivy--buffer-propertize b s))))
 
 (use-package swiper
   :ensure t
