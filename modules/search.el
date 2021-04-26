@@ -82,7 +82,7 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
                                        (funcall
                                         all-the-icons-ivy-family-fallback-for-buffer
                                         all-the-icons-ivy-name-fallback-for-buffer)))
-            (all-the-icons-ivy--buffer-propertize b s)))))
+            (all-the-icons-ivy--buffer-propertize b s))))
 
 (use-package swiper
   :ensure t
