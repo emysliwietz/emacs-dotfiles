@@ -93,7 +93,7 @@
 (use-package blacken
   :ensure t
   :ensure-system-package (black . "sudo pip3 install black")
-  :defer t
+  :defer nil
   :config (add-hook 'python-mode-hook #'blacken-mode)
 )
 
