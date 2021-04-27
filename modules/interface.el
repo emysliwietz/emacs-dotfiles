@@ -34,7 +34,7 @@
 			  (cond ((eq my-buffer (window-buffer (selected-window)))
 				 (if (= (length (window-list)) 1) (frame-trans-on) (frame-trans-off)))
 				((get-buffer-window my-buffer)
-				 (frame-trans-off)) 
+				 (frame-trans-off))
 				(t
 				 (frame-trans-off)))
 			  )
@@ -194,3 +194,4 @@
    (list (cadr items))))
 
 (provide 'interface)
+;;; interface.el ends here
