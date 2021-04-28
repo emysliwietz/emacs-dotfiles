@@ -15,5 +15,9 @@
   :ensure-system-package python3-flake8
   :init (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package docker-compose-mode
+  :ensure t
+  :defer t)
+
 (provide 'linting)
 ;;; linting.el ends here
