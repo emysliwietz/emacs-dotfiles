@@ -63,9 +63,18 @@ Not assuming that url is in title like in Keepass Helper extension, for privacy.
   (if (string-equal (format "%s" mode) "exwm-mode")
       (cond ((string-prefix-p "Signal" buffname)
 	     (all-the-icons-faicon "comment" :face 'all-the-icons-blue-alt))
-	    ((string-equal "st" buffname)
+	    ((string-prefix-p "Skype" buffname)
+	     (all-the-icons-faicon "skype" :face 'all-the-icons-blue))
+	    ((string-equal "Volume Control" buffname)
+	     (all-the-icons-faicon "volume-up" :face 'all-the-icons-purple-alt))
+	    ((file-directory-p buffname)
+	     (all-the-icons-faicon "folder" :face 'all-the-icons-yellow))
+	    ((string-suffix-p " - mpv" buffname)
+	     (all-the-icons-faicon "play" :face 'all-the-icons-orange))
+	    ((or(string-equal "st" buffname) (string-prefix-p (concat (user-login-name) "@") buffname) (string-prefix-p "root@" buffname))
 	     (all-the-icons-faicon "terminal" :face 'all-the-icons-green))
 	    )))
+
 
 (defun all-the-icons-ivy--buffer-transformer (b s)
   "Return a candidate string for buffer B named S preceded by an icon.
