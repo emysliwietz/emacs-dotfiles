@@ -67,6 +67,8 @@ Not assuming that url is in title like in Keepass Helper extension, for privacy.
 	     (all-the-icons-faicon "skype" :face 'all-the-icons-blue))
 	    ((string-suffix-p " - Discord" buffname)
 	     (all-the-icons-faicon "simplybuilt" :face 'all-the-icons-purple))
+	    ((string-prefix-p "OBS" buffname)
+	     (all-the-icons-faicon "video-camera" :face 'all-the-icons-purple-alt))
 	    ((string-equal "Volume Control" buffname)
 	     (all-the-icons-faicon "volume-up" :face 'all-the-icons-purple-alt))
 	    ((file-directory-p buffname)
