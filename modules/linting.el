@@ -19,5 +19,13 @@
   :ensure t
   :defer t)
 
+(use-package nginx-mode
+  :ensure t
+  :defer t)
+
+(use-package company-nginx
+  :ensure t
+  :defer t)
+
 (provide 'linting)
 ;;; linting.el ends here
