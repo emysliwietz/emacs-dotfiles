@@ -84,14 +84,15 @@ Not assuming that url is in title like in Keepass Helper extension, for privacy.
   "Return a candidate string for buffer B named S preceded by an icon.
 Try to find the icon for the buffer's B `major-mode'.
 If that fails look for an icon for the mode that the `major-mode' is derived from."
-  (let ((mode (buffer-local-value 'major-mode b)))
+  (let ((mode (buffer-local-value 'major-mode b))
+	(buffname (replace-regexp-in-string "<.*>$" "" s)))
     (format (concat "%s" all-the-icons-spacer "%s")
             (propertize "\t" 'display (or
                                        (all-the-icons-ivy--icon-for-mode mode)
                                        (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
-				       (all-the-icons-ivy--icon-for-firefox mode s)
-				       (all-the-icons-ivy--icon-for-tor mode s)
-				       (all-the-icons-ivy--icon-for-exwm mode s)
+				       (all-the-icons-ivy--icon-for-firefox mode buffname)
+				       (all-the-icons-ivy--icon-for-tor mode buffname)
+				       (all-the-icons-ivy--icon-for-exwm mode buffname)
                                        (funcall
                                         all-the-icons-ivy-family-fallback-for-buffer
                                         all-the-icons-ivy-name-fallback-for-buffer)))
