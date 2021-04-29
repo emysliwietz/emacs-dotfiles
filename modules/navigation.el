@@ -89,6 +89,10 @@
 			    "*Warnings*"
 			    "*Compile-Log*"
 			    "*elfeed-log*"
+			    "*system-packages*"
+			    "*Async Shell Command*"
+			    "*Flycheck errors*"
+			    "*Flycheck error messages*"
 			    )))
     (cond ((member b unwanted-buffers) (kill-buffer buffer))
 	  ((string-match "^\*tramp.*\*$" b) (kill-buffer buffer))
