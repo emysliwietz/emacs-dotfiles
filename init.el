@@ -101,13 +101,15 @@
  '(custom-safe-themes
    '("f9aede508e587fe21bcfc0a85e1ec7d27312d9587e686a6f5afdbb0d220eab50" default))
  '(package-selected-packages
-   '(docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
+   '(nginx-mode company-nginx docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mode-line ((t (:box (:line-width 1 :color "black")))))
- '(mu4e-thread-folding-child-face ((t (:extend t :background "gray10" :underline))))
+ '(mu4e-thread-folding-child-face ((t (:extend t :background "gray10" :underline nil))))
+ '(mu4e-thread-folding-root-folded-face ((t (:extend t :background "gray15" :underline))))
+ '(mu4e-thread-folding-root-unfolded-face ((t (:extend t :background "gray15" :overline nil :underline nil))))
  '(spaceline-highlight-face ((t (:background "DarkGreen" :foreground "#FFEEEE" :inherit 'mode-line)))))
  
