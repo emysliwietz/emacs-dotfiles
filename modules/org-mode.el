@@ -15,14 +15,6 @@
   :defer t
   )
 
-;;; Agenda
-(global-set-key "\C-ca" 'org-agenda)
-
-;;;; Org Agenda Files
-
-(setq org-agenda-files (append
-			(delete "~/pCloudDrive/agenda/dailyplan.org" (file-expand-wildcards "~/pCloudDrive/agenda/[a-zA-Z1-9]*.org"))))
-
 
 ;;;; Super Agenda
 ;;;;; Packets
@@ -183,6 +175,9 @@
 
 ;;; Org in scratch buffer
 (setq initial-major-mode 'org-mode)
+
+;;; Add org mode to those files, too
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 
 ;;; Images
 ;;;; Iimage mode
