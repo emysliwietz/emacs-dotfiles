@@ -31,7 +31,7 @@
       mu4e-headers-date-format "%Y-%m-%d %H:%M"
       message-kill-buffer-on-exit t
       mu4e-confirm-quit nil
-      mu4e-headers-results-limit 10000
+      mu4e-headers-results-limit 500
       mu4e-use-fancy-chars t)
 
 (when (fboundp 'imagemagick-register-types)
