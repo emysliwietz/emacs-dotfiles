@@ -93,6 +93,8 @@
 			    "*Async Shell Command*"
 			    "*Flycheck errors*"
 			    "*Flycheck error messages*"
+			    "*Calendar*"
+			    "*XELB-DEBUG*"
 			    )))
     (cond ((member b unwanted-buffers) (kill-buffer buffer))
 	  ((string-match "^\*tramp.*\*$" b) (kill-buffer buffer))
