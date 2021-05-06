@@ -1,8 +1,0 @@
-* Blogs                                                              :elfeed:
-** People                                                           :people:
-*** http://lukesmith.xyz/rss.xml
-*** https://jacobwsmith.xyz/rss.xml
-*** https://rss.app/feeds/5NJ4JfFd0DxfvAMS.xml ; Signal
-*** https://rss.app/feeds/PX4US9bBIYAGzL7G.xml ; Snowden
-** Webcomics                                                        :comic:
-*** https://xkcd.com/rss.xml 
