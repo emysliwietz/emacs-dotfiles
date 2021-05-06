@@ -11,7 +11,7 @@
 	      ("F" . elfeed-toggle-star)
 	      )
   :init
-  (setq my/default-elfeed-search-filter "@3-days-ago +unread")
+  (setq elfeed-search-filter "+unread") ;@3-days-ago 
   (setq-default elfeed-search-filter my/default-elfeed-search-filter)
   :config
 
@@ -103,6 +103,26 @@ browser defined by `browse-url-generic-program'."
   (defalias 'elfeed-toggle-star
     (elfeed-expose #'elfeed-search-toggle-all 'star))
 
+  ;;next feed with spacebar
+
+  (defun elfeed-scroll-up-command (&optional arg)
+    "Scroll up or go to next feed item in Elfeed"
+    (interactive "^P")
+    (let ((scroll-error-top-bottom nil))
+      (condition-case-unless-debug nil
+          (scroll-up-command arg)
+	(error (elfeed-show-next)))))
+
+  (defun elfeed-scroll-down-command (&optional arg)
+    "Scroll up or go to next feed item in Elfeed"
+    (interactive "^P")
+    (let ((scroll-error-top-bottom nil))
+      (condition-case-unless-debug nil
+          (scroll-down-command arg)
+	(error (elfeed-show-prev)))))
+
+  (define-key elfeed-show-mode-map (kbd "SPC") 'elfeed-scroll-up-command)
+  (define-key elfeed-show-mode-map (kbd "S-SPC") 'elfeed-scroll-down-command)
 
   (defun elfeed-search-quick-url-note ()
     "In search mode, capture the title and link for the selected
@@ -121,13 +141,41 @@ browser defined by `browse-url-generic-program'."
 
   (bind-keys :map elfeed-search-mode-map
 	     ("l" . elfeed-search-link-title)
-	     ("v" . elfeed-search-quick-url-note)))
+	     ("v" . elfeed-search-quick-url-note))
 
+  ;;use eww and mpv to open browser stuff
+
+  (setq browse-url-browser-function
+	'(("https:\\/\\/www\\.youtu\\.*be." . browse-url-mpv)
+          ("." . browse-url-generic)))
+
+  (defun browse-url-mpv (url &optional single)
+    (start-process "mpv" nil "mpv" (shell-quote-argument url)))
+
+  (defun elfeed-show-eww-open (&optional use-generic-p)
+    "open with eww"
+    (interactive "P")
+    (let ((browse-url-browser-function #'eww-browse-url))
+      (elfeed-show-visit use-generic-p)))
+
+  (defun elfeed-search-eww-open (&optional use-generic-p)
+    "open with eww"
+    (interactive "P")
+    (let ((browse-url-browser-function #'eww-browse-url))
+      (elfeed-search-browse-url use-generic-p)))
+
+  (define-key elfeed-show-mode-map (kbd "B") 'elfeed-show-eww-open)
+  (define-key elfeed-search-mode-map (kbd "B") 'elfeed-search-eww-open)
+  
+  )
 
 (use-package elfeed-goodies
   :ensure t
   :config
   (elfeed-goodies/setup))
+
+ (setq elfeed-goodies/switch-to-entry nil
+       elfeed-show-entry-switch 'switch-to-buffer)
 
 (use-package elfeed-org
   :ensure t
@@ -139,4 +187,6 @@ browser defined by `browse-url-generic-program'."
 
 
 
-(provide 'elfeed-tweaks)
+
+
+(provide 'elfeed-
