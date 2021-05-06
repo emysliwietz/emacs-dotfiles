@@ -11,8 +11,8 @@
 	      ("F" . elfeed-toggle-star)
 	      )
   :init
-  (setq elfeed-search-filter "+unread") ;@3-days-ago 
-  (setq-default elfeed-search-filter my/default-elfeed-search-filter)
+  (setq elfeed-search-filter "+unread") ;@3-days-ago
+    (setq browse-url-generic-program "firefox")
   :config
 
   ;;

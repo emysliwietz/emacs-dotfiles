@@ -82,6 +82,7 @@
 ;; Kill unwanted buffers
 (defun kill-if-unwanted (buffer)
   (let ((b (buffer-name buffer))
+	(bfn (buffer-file-name buffer))
 	(unwanted-buffers '(
 			    "*Messages*"
 			    "*Backtrace*"
@@ -95,8 +96,12 @@
 			    "*Flycheck error messages*"
 			    "*Calendar*"
 			    "*XELB-DEBUG*"
+			    "*Read-Aloud Log*"
+			    "*elfeed-search*"
+			    "elfeed.org"
 			    )))
     (cond ((member b unwanted-buffers) (kill-buffer buffer))
+	  ((member bfn (mapcar 'expand-file-name org-agenda-files)) (kill-buffer buffer))
 	  ((string-match "^\*tramp.*\*$" b) (kill-buffer buffer))
 	  ((string-match "\.png$" b) (kill-buffer buffer))
 	  ((string-match "\.jpg$" b) (kill-buffer buffer))
@@ -105,7 +110,6 @@
 	  ((string-match "^\*helpful .*\*" b) (kill-buffer buffer))
 	  ((string-match "^magit" b) (kill-buffer buffer))
 	  )))
-
 
 (defun kill-unwanted-buffers ()
   (interactive)
