@@ -15,6 +15,12 @@
   :defer t
   )
 
+;;; Todo keywords
+(setq org-todo-keywords
+      '((sequence "TODO" "FEEDBACK" "INPRO" "MEETING" "NEXT" "WAITING" "|" "CANCELLED" "MOVED" "SKIPPED" "DONE" "DELEGATED")))
+
+
+
 
 ;;;; Super Agenda
 ;;;;; Packets
