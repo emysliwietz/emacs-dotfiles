@@ -1,4 +1,4 @@
-elfeeddb/*
+elfeeddb
 modules/email-accounts.el
 modules/email-refile.el
 elfeed.org
