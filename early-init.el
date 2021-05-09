@@ -23,4 +23,12 @@
 (setq gc-cons-percentage 0.6)
 
 (add-to-list 'load-path "~/.config/emacs/modules")
+
+(setq byte-compile-warnings '(not obsolete))
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(menu-bar-mode 0)
+(tooltip-mode 0)
+(load-theme 'monokai t)
+
 (make-thread (require 'optimizations))
