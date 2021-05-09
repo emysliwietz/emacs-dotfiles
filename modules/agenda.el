@@ -20,10 +20,11 @@
 (use-package idle-org-agenda
      :after org-agenda
      :ensure t
-     :config (idle-org-agenda-(setq org-agenda-window-setup 'current-window
-      org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
-      org-default-notes-file "/home/user/dp/agenda/refile.org"
-      org-use-fast-todo-selection t)
+     :config (idle-org-agenda-mode t)
+     (setq org-agenda-window-setup 'current-window
+	   org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
+	   org-default-notes-file "/home/user/dp/agenda/refile.org"
+	   org-use-fast-todo-selection t))
 
 ;;; Agenda
 (global-set-key "\C-ca" 'org-agenda)

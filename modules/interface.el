@@ -190,5 +190,10 @@
    (car items)
    (list (cadr items))))
 
+(defun test-function ()
+  (message "After init"))
+
+(add-hook 'after-init-hook 'test-function)
+
 (provide 'interface)
 ;;; interface.el ends here
