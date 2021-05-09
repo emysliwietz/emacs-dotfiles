@@ -190,10 +190,14 @@
    (car items)
    (list (cadr items))))
 
-(defun test-function ()
-  (message "After init"))
+(defun cleanup-after-init ()
+  (switch-to-buffer "*scratch*")
+  (delete-other-windows)
+  (kill-unwanted-buffers))
 
-(add-hook 'after-init-hook 'test-function)
+
+  
+(add-hook 'after-init-hook (run-at-time "1 sec" nil 'cleanup-after-init))
 
 (provide 'interface)
 ;;; interface.el ends here
