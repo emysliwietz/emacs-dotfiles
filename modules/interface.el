@@ -75,7 +75,8 @@
   :tight t
   ))
 
-(use-package spaceline-all-the-icons 
+(use-package spaceline-all-the-icons
+  :ensure t
   :after spaceline
   :config (spaceline-all-the-icons-theme)
   (setq spaceline-all-the-icons-separator-type (quote arrow)))
