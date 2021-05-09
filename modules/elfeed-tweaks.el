@@ -189,4 +189,4 @@ browser defined by `browse-url-generic-program'."
 
 
 
-(provide 'elfeed-
+(provide 'elfeed-tweaks)
