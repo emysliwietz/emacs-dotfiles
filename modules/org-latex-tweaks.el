@@ -5,4 +5,6 @@
       org-ref-default-bibliography '("~/Uni/dox/uni.bib")
       org-ref-pdf-directory "~/Uni/dox/pdf/"))
 
-(provide 'org-ref-tweaks)
+(setq org-startup-with-inline-images t)
+
+(provide 'org-latex-tweaks)
