@@ -1,4 +1,5 @@
-;;(setq gc-cons-threshold (* 50 1000 1000))
+(load-theme 'monokai t)
+(tooltip-mode 0)
 
 (defun defered-loading ()
   ;; Emacs startup time profiling
@@ -20,9 +21,13 @@
   ;; File shortcuts
   (make-thread (require 'shortcuts))
   ;; Languagetool grammar checking
-  (make-thread (require 'languagetool))
+;  (make-thread (require 'languagetool))
   ;; Org mode configuration
   (make-thread (require 'org-mode))
+  ;; Org bibtex references
+  (make-thread (require 'org-latex-tweaks))
+  ;; Org agenda
+  (make-thread (require 'agenda))
   ;; mu4e mail
   (make-thread (require 'email))
   ;; Changes to dired
@@ -43,8 +48,6 @@
   (make-thread (require 'linting))
   ;; RSS Reader
   (make-thread (require 'elfeed-tweaks))
-  ;; Org agenda
-  (make-thread (require 'agenda))
   ;; Statusbar
   ;  (make-thread (require 'symon-tweaks))
   ;  (make-thread (require 'headerline))
@@ -100,7 +103,7 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe org-mouse ol-rmail ol-w3m org-checklist ol-man org-toc))
  '(package-selected-packages
-   '(idle-org-agenda org-timeline org-alert nginx-mode company-nginx docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
+   '(org-ref idle-org-agenda org-timeline org-alert nginx-mode company-nginx docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

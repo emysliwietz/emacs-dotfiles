@@ -28,7 +28,6 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
-(tooltip-mode 0)
-
+;(load-theme 'monokai t)
 
 (make-thread (require 'optimizations))
