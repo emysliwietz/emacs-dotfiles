@@ -61,5 +61,8 @@
      :bind ("s-u" . ivy-emoji))
 
 
+(global-set-key (kbd "M-q") 'auto-fill-mode)
+
+
 (provide 'editing)
 
