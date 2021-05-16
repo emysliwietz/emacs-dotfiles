@@ -63,6 +63,12 @@
 
 (global-set-key (kbd "M-q") 'auto-fill-mode)
 
+(use-package undo-tree
+  :ensure t
+  :defer f
+  :config
+  (global-undo-tree-mode 1))
+
 
 (provide 'editing)
 
