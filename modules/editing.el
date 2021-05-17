@@ -52,6 +52,14 @@
 ;;; C-x a i g (Add inverse global)
 (setq-default abbrev-mode t)
 
+;;; Icons with company
+
+
+(use-package company-box
+  :ensure t
+  :defer t
+  :hook (company-mode . company-box-mode))
+
 ;;; Change major mode when lines are so long they affect performance
 (global-so-long-mode t)
 
@@ -61,7 +69,42 @@
      :bind ("s-u" . ivy-emoji))
 
 
-(global-set-key (kbd "M-q") 'auto-fill-mode)
+(defun which-active-modes ()
+  "Return which minor modes are enabled in the current buffer."
+  (let ((active-modes))
+    (mapc (lambda (mode) (condition-case nil
+                        (if (and (symbolp mode) (symbol-value mode))
+                            (add-to-list 'active-modes mode))
+                      (error nil) ))
+          minor-mode-list)
+    (format "%s" active-modes)))
+
+(defun replace-regexp-entire-buffer (pattern replacement)
+  "Perform regular-expression replacement throughout buffer."
+  (interactive
+   (let ((args (query-replace-read-args "Replace" t)))
+     (setcdr (cdr args) nil)    ; remove third value returned from query---args
+     args))
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward pattern nil t)
+      (replace-match replacement))))
+
+(defun toggle-auto-fill ()
+  "Toggle auto fill mode and reset buffer to non-auto-fill."
+  (interactive)
+  (if (string-match-p "auto-fill-function" (which-active-modes))
+      (progn (replace-regexp-entire-buffer "\n" " ")
+	     (auto-fill-mode nil))
+    (progn
+      (message "auto-fill-mode")
+      (auto-fill-mode t)
+      (insert "f")
+      )))
+
+
+
+(global-set-key (kbd "M-q") 'toggle-auto-fill)
 
 (use-package undo-tree
   :ensure t
