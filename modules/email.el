@@ -101,13 +101,23 @@
 
 
 (use-package mu4e-alert
-  :defer t
-  :ensure t)
+  :defer nil
+  :ensure t
+  :init
+  (mu4e-alert-enable-mode-line-display)
+  (defun custom-refresh-mu4e-alert-mode-line ()
+    ;needed to make icon update while and reset connection
+    (interactive)
+    (mu4e~proc-kill)
+    (mu4e-alert-enable-mode-line-display)
+    )
+  (run-with-timer 0 60 'custom-refresh-mu4e-alert-mode-line)
+  (mu4e-alert-set-default-style 'libnotify)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+  )
 
 
-(mu4e-alert-set-default-style 'libnotify)
-(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-(add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
 
 
 ;;need this for hash access
