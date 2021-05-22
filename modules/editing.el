@@ -90,17 +90,31 @@
     (while (re-search-forward pattern nil t)
       (replace-match replacement))))
 
+
+(setq toggle-auto-fill-boolean nil)
+
+(defun toggle-auto-fill-on ()
+  (set-fill-column 80)
+  (auto-fill-mode t)
+  (setq toggle-auto-fill-boolean t)
+  ;(string-match-p "auto-fill-function" (which-active-modes))  
+  (message "auto-fill-mode on"))
+
+
+(defun toggle-auto-fill-off ()
+  (replace-regexp-entire-buffer "\n" " ")
+  (auto-fill-mode nil)
+  (setq toggle-auto-fill-boolean nil)
+  (message "auto-fill-mode off")
+  )
+
 (defun toggle-auto-fill ()
   "Toggle auto fill mode and reset buffer to non-auto-fill."
   (interactive)
-  (if (string-match-p "auto-fill-function" (which-active-modes))
-      (progn (replace-regexp-entire-buffer "\n" " ")
-	     (auto-fill-mode nil))
-    (progn
-      (message "auto-fill-mode")
-      (auto-fill-mode t)
-      (insert "f")
-      )))
+  (if toggle-auto-fill-boolean
+      (toggle-auto-fill-off)
+    (toggle-auto-fill-on)
+    ))
 
 
 
