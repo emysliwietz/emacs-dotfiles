@@ -61,9 +61,8 @@
 
 (use-package company-tabnine
   :ensure t
-  :init
-  (company-tabnine-install-binary)
   :config
+  ;(company-tabnine-install-binary)
   (add-to-list 'company-backends #'company-tabnine))
 
 
