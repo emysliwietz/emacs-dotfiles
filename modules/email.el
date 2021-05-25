@@ -63,7 +63,8 @@
 
 
 (require 'org-mu4e)
-(setq org-mu4e-convert-to-html t)
+(setq org-mu4e-convert-to-html t
+      org-mu4e-link-query-in-headers-mode nil)
 
 (use-package org-mime
   :defer t
