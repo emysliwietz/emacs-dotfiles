@@ -94,6 +94,7 @@
 			    "*Async Shell Command*"
 			    "*Flycheck errors*"
 			    "*Flycheck error messages*"
+			    "*Flymake log*"
 			    "*Calendar*"
 			    "*XELB-DEBUG*"
 			    "*Read-Aloud Log*"

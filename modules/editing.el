@@ -31,6 +31,7 @@
         company-minimum-prefix-length 2
         company-require-match nil
         company-dabbrev-ignore-case nil
+	company-show-numbers t
         company-dabbrev-downcase nil)
 
   (defconst emacs/>=26p
@@ -47,6 +48,32 @@
                   ("M-h" . company-quickhelp-manual-begin))
       :hook (global-company-mode . company-quickhelp-mode)
       :init (setq company-quickhelp-delay 0.8))))
+
+(use-package company-jedi
+:defer t
+:ensure t)
+
+(use-package company-quickhelp
+  :defer t
+  :ensure t
+  :init
+  (company-quickhelp-mode 1))
+
+(use-package company-tabnine
+  :ensure t
+  :init
+  (company-tabnine-install-binary)
+  :config
+  (add-to-list 'company-backends #'company-tabnine))
+
+
+(defun jedi/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'jedi/python-mode-hook)
+
+;; Python
+(setq python-shell-interpreter "python3")
+
 
 ;;; Auto-correct
 ;;; C-x a i g (Add inverse global)
