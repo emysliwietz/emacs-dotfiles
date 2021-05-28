@@ -59,12 +59,12 @@
   :init
   (company-quickhelp-mode 1))
 
-(use-package company-tabnine
-  :ensure t
-  :init
-  (company-tabnine-install-binary)
-  :config
-  (add-to-list 'company-backends #'company-tabnine))
+;(use-package company-tabnine
+;  :ensure t
+;  :init
+;  (company-tabnine-install-binary)
+;  :config
+;  (add-to-list 'company-backends #'company-tabnine))
 
 
 (defun jedi/python-mode-hook ()
