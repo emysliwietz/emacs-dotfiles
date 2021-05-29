@@ -81,7 +81,7 @@
 	([?\s-n] . switchmonitor-next)
 	([?\s-p] . switchmonitor-prev)
         ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
+                    `(,(kbd (format "M-s-%d" i)) .
                       (lambda ()
                         (interactive)
                         (exwm-workspace-switch-create ,i))))
