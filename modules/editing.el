@@ -121,7 +121,7 @@
 (setq toggle-auto-fill-boolean nil)
 
 (defun toggle-auto-fill-on ()
-  (set-fill-column 80)
+  (set-fill-column 100) ;80
   (auto-fill-mode t)
   (setq toggle-auto-fill-boolean t)
   ;(string-match-p "auto-fill-function" (which-active-modes))  

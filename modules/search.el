@@ -19,6 +19,7 @@
   (setq ivy-use-virtual-buffers t
 	ivy-count-format "%d/%d "
 	ivy-height 20
+	enable-recursive-minibuffers t
 	ivy-display-style 'fancy))
 
 (use-package all-the-icons-ibuffer
