@@ -107,6 +107,14 @@
   (interactive)
   (find-file "/ssh:user@sermak.xyz|sudo:root@sermak.xyz:/"))
 
+(defun jarvis()
+  (interactive)
+  (find-file "/ssh:user@sermak.xyz|sudo:root@jarvis:/"))
+
+(defun jarvis-root()
+  (interactive)
+  (find-file "/ssh:user@sermak.xyz|ssh:user@jarvis:/"))
+
 (global-set-key (kbd "C-z d") 'dailyplan)
 (global-set-key (kbd "C-z b") 'books)
 (global-set-key (kbd "C-z m") 'movies)
