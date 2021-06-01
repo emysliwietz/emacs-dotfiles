@@ -59,11 +59,12 @@
   :init
   (company-quickhelp-mode 1))
 
-(use-package company-tabnine
-  :ensure t
-  :config
-  ;(company-tabnine-install-binary)
-  (add-to-list 'company-backends #'company-tabnine))
+;(use-package company-tabnine
+;  :ensure t
+;  :init
+;  (company-tabnine-install-binary)
+;  :config
+;  (add-to-list 'company-backends #'company-tabnine))
 
 
 (defun jedi/python-mode-hook ()
@@ -120,7 +121,7 @@
 (setq toggle-auto-fill-boolean nil)
 
 (defun toggle-auto-fill-on ()
-  (set-fill-column 80)
+  (set-fill-column 100) ;80
   (auto-fill-mode t)
   (setq toggle-auto-fill-boolean t)
   ;(string-match-p "auto-fill-function" (which-active-modes))  

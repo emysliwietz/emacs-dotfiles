@@ -150,4 +150,39 @@
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "<C-iso-lefttab>") 'previous-buffer)
 
+;;; Winum mode for easy moving through windows
+(use-package winum
+  :ensure t
+  :defer t
+  :config
+  (setq winum-auto-setup-mode-line nil
+	winum-keymap
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "s-^") 'winum-select-window-by-number)
+      (define-key map (kbd "s-0") 'winum-select-window-0)
+      (define-key map (kbd "s-1") 'winum-select-window-1)
+      (define-key map (kbd "s-2") 'winum-select-window-2)
+      (define-key map (kbd "s-3") 'winum-select-window-3)
+      (define-key map (kbd "s-4") 'winum-select-window-4)
+      (define-key map (kbd "s-5") 'winum-select-window-5)
+      (define-key map (kbd "s-6") 'winum-select-window-6)
+      (define-key map (kbd "s-7") 'winum-select-window-7)
+      (define-key map (kbd "s-8") 'winum-select-window-8)
+      (define-key map (kbd "s-9") 'winum-select-window-9)
+      map))
+  (winum-mode t)
+;  :bind (
+;	 ("s-0" . winum-select-window-0)
+;	 ("s-1" . winum-select-window-1)
+;	 ("s-2" . winum-select-window-2)
+;	 ("s-3" . winum-select-window-3)
+;	 ("s-4" . winum-select-window-4)
+;	 ("s-5" . winum-select-window-5)
+;	 ("s-6" . winum-select-window-6)
+;	 ("s-7" . winum-select-window-7)
+;	 ("s-8" . winum-select-window-8)
+;	 ("s-9" . winum-select-window-9)
+;	 ("s-^" . winum-select-window-by-number))
+  )
+
 (provide 'navigation)

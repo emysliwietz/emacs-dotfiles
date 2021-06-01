@@ -131,11 +131,14 @@
 
 ;; contact tweaks
 
-;;(setq mu4e-compose-complete-only-after t)
-;;(setq mu4e-compose-complete-only-personal t)
-;;(use-package mu4e-conversation
-;;:ensure t
-;;)
+(setq mu4e-compose-complete-only-after t)
+(setq mu4e-compose-complete-only-personal t)
+(use-package mu4e-conversation
+  :defer t
+  :ensure t
+  :config
+  (global-mu4e-conversation-mode t)
+)
 
 (require 'email-accounts)
 

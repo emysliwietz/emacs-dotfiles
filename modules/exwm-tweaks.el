@@ -81,7 +81,7 @@
 	([?\s-n] . switchmonitor-next)
 	([?\s-p] . switchmonitor-prev)
         ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
+                    `(,(kbd (format "M-s-%d" i)) .
                       (lambda ()
                         (interactive)
                         (exwm-workspace-switch-create ,i))))
@@ -106,7 +106,7 @@
               (exwm-workspace-rename-buffer exwm-title))))
 
 (setq exwm-manage-configurations
-        '(((equal exwm-class-name "gui.SmartcardGUI")
+      '(((equal exwm-class-name "gui.SmartcardGUI")
            floating t
            floating-mode-line nil
 ;           width 0.4
