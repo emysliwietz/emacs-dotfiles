@@ -2,4 +2,5 @@ elfeeddb
 modules/email-accounts.el
 modules/email-refile.el
 modules/refile.py
+modules/refile.d
 elfeed.org

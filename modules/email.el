@@ -265,5 +265,14 @@
     (:size (mu4e-display-size val))
     (t (mu4e~headers-custom-field msg field))))
 
+(defun move-message-to-refile-filter-file ()
+  (interactive)
+  (let ((from-address (cdr (car (mu4e-message-field (mu4e-message-at-point) :from)))))
+    (call-process-shell-command (concat "refilefolder " from-address) nil 0)
+    ))
+  
+
+(define-key mu4e-headers-mode-map (kbd "f") 'move-message-to-refile-filter-file)
+
 
 (provide 'email)
