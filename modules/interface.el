@@ -202,5 +202,6 @@
   
 (add-hook 'after-init-hook 'schedule-cleanup-after-init)
 
+(set-fontset-font t nil (font-spec :size 12 :name "DejaVu Sans"))
 (provide 'interface)
 ;;; interface.el ends here

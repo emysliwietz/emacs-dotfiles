@@ -53,12 +53,6 @@
 :defer t
 :ensure t)
 
-(use-package company-quickhelp
-  :defer t
-  :ensure t
-  :init
-  (company-quickhelp-mode 1))
-
 ;(use-package company-tabnine
 ;  :ensure t
 ;  :init
@@ -84,8 +78,49 @@
 
 (use-package company-box
   :ensure t
-  :defer t
+  :defer nil
   :hook (company-mode . company-box-mode))
+
+(use-package irony
+  :ensure t
+  :defer nil
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+(use-package company-irony
+  :ensure t
+  :defer nil
+  :config
+  (eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony)))
+
+(use-package company-irony-c-headers
+  :ensure t
+  :defer nil
+  :config
+  (eval-after-load 'company
+  '(add-to-list
+    'company-backends '(company-irony-c-headers company-irony))))
+
+(use-package irony-eldoc
+  :ensure t
+  :defer nil
+  :config
+  (add-hook 'irony-mode-hook #'irony-eldoc))
+
+(use-package flycheck-irony
+  :ensure t
+  :defer nil
+  :config
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+
+(use-package iedit
+  :ensure t
+  :defer nil)
 
 ;;; Change major mode when lines are so long they affect performance
 (global-so-long-mode t)
@@ -149,7 +184,7 @@
 
 (use-package undo-tree
   :ensure t
-  :defer f
+  :defer nil
   :config
   (global-undo-tree-mode 1))
 

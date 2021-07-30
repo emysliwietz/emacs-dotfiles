@@ -108,8 +108,11 @@
 	  ((string-match "\.jpg$" b) (kill-buffer buffer))
 	  ((string-match "\.jpeg$" b) (kill-buffer buffer))
 	  ((string-match "\.gif$" b) (kill-buffer buffer))
+	  ((string-match "\.log$" b) (kill-buffer buffer))
+	  ((string-match "^_region_.tex$" b) (kill-buffer buffer))
 	  ((string-match "^\*helpful .*\*" b) (kill-buffer buffer))
 	  ((string-match "^magit" b) (kill-buffer buffer))
+	  ((string-match "^\*.*\*$" b) (kill-buffer buffer))
 	  )))
 
 (defun kill-unwanted-buffers ()
