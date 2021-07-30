@@ -1187,6 +1187,13 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
 
 (global-set-key (kbd "C-c v") 'hydra-pamparam/body)
 
+(setq pamparam-alist
+      '(("/home/user/dox/languages/tagalog/Tagalog.org"
+         . "/home/user/dox/languages/tagalog/Tagalog.pam")
+	("/home/user/dox/languages/latin/Latin.org"
+         . "/home/user/dox/languages/latin/Latin.pam")))
+
+
 (provide 'pamparam)
 
 ;;; pamparam.el ends here
