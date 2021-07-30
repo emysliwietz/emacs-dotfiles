@@ -15,6 +15,18 @@
   :ensure-system-package python3-flake8
   :init (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package flycheck-google-cpplint
+  :ensure t
+  :defer nil)
+
+
+(use-package google-c-style
+  :ensure t
+  :defer nil
+  :config
+  (add-hook 'c-mode-common-hook 'google-set-c-style)
+  (add-hook 'c-mode-common-hook 'google-make-newline-indent))
+
 (use-package docker-compose-mode
   :ensure t
   :defer t)
