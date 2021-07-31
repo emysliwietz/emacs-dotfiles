@@ -127,6 +127,16 @@
 
 
 
+(global-set-key (kbd "C-c -") (lambda () (interactive) (insert "̄")))
+(global-set-key (kbd "C-c ^") (lambda () (interactive) (insert "̂")))
+;;; Chinese tones
+(global-set-key (kbd "C-c 1") (lambda () (interactive) (insert "̄")))
+(global-set-key (kbd "C-c 2") (lambda () (interactive) (insert "́")))
+(global-set-key (kbd "C-c 3") (lambda () (interactive) (insert "̌")))
+(global-set-key (kbd "C-c 4") (lambda () (interactive) (insert "̀")))
+
+
+
 ;;; Rectangle mark mode 
 (global-set-key (kbd "C-ö") (lambda () (interactive) (rectangle-mark-mode)))
 ;;; Sudo-edit
