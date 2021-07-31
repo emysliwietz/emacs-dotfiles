@@ -1135,20 +1135,20 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
 
 (defun pamparam-latin ()
   (interactive)
-  (find-file "~/dox/pamparam/Latin.org"))
+  (find-file "~/dox/pamparam/latin/Latin.org"))
 
 (defun pamparam-tagalog ()
   (interactive)
-  (find-file "~/dox/pamparam/Tagalog.org"))
+  (find-file "~/dox/pamparam/tagalog/Tagalog.org"))
 
 (defun pamparam-drill-latin ()
   (interactive)
-  (find-file "~/dox/pamparam/Latin.pam")
+  (find-file "~/dox/pamparam/latin/Latin.pam")
   (pamparam-drill))
 
 (defun pamparam-drill-tagalog ()
   (interactive)
-  (find-file "~/dox/pamparam/Tagalog.pam")
+  (find-file "~/dox/pamparam/tagalog/Tagalog.pam")
   (pamparam-drill))
 
 ;;* `hydra-pamparam'
