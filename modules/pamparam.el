@@ -32,9 +32,7 @@
 ;;; Code:
 
 ;;* Requires
-(use-package worf
-  :ensure t
-  :defer t)
+(require 'worf)
 (use-package lispy
   :ensure t
   :defer t)
@@ -729,47 +727,7 @@ repository, while the new card will start with empty metadata."
              (length new-cards)
              (length updated-cards)
              (length processed-headings))))
-(defun worf--bounds-subtree ()
-  "Return bounds of the current subtree as a cons."
-  (save-excursion
-    (save-match-data
-      (condition-case e
-          (cons
-           (progn
-             (org-back-to-heading t)
-             (point))
-           (progn
-             (org-end-of-subtree t t)
-             (when (and (org-at-heading-p)
-                        (not (eobp)))
-               (backward-char 1))
-             (point)))
-        (error
-         (if (string-match
-              "^Before first headline"
-              (error-message-string e))
-             (cons (point-min)
-                   (or (ignore-errors
-                         (org-speed-move-safe 'outline-next-visible-heading)
-                         (point))
-                       (point-max)))
-           (signal (car e) (cdr e))))))))
 
-(defun worf--at-property-p ()
-  "Return t if point is at property."
-  (looking-at "^:"))
-
-(defun worf--special-p ()
-  "Return t if point is special.
-When point is special, alphanumeric keys call commands instead of
-calling `self-insert-command'."
-  (or (region-active-p)
-      (and (bolp)
-           (or
-            (looking-at worf-regex)
-            (worf--at-property-p)
-            (looking-back "^\\*+" (line-beginning-position))
-            (looking-at "CLOCK:")))))
 
 (defun pamparam--card-info ()
   (let* ((bnd (worf--bounds-subtree))
@@ -1175,23 +1133,41 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
 (lispy-mode t)
 (lispy-raise-minor-mode 'pamparam-card-mode)
 
+(defun pamparam-latin ()
+  (interactive)
+  (find-file "~/dox/pamparam/Latin.org"))
+
+(defun pamparam-tagalog ()
+  (interactive)
+  (find-file "~/dox/pamparam/Tagalog.org"))
+
+(defun pamparam-drill-latin ()
+  (interactive)
+  (find-file "~/dox/pamparam/Latin.pam")
+  (pamparam-drill))
+
+(defun pamparam-drill-tagalog ()
+  (interactive)
+  (find-file "~/dox/pamparam/Tagalog.pam")
+  (pamparam-drill))
+
 ;;* `hydra-pamparam'
 (defhydra hydra-pamparam (:exit t)
   "pam"
+  ("t" pamparam-drill-tagalog "tagalog")
+  ("l" pamparam-drill-latin "latin")
   ("d" pamparam-drill "drill")
   ("s" pamparam-sync "sync")
   ("p" pamparam-pull "pull")
   ("c" pamparam-commit "commit")
+  ("gl" pamparam-latin "goto latin")
+  ("gt" pamparam-tagalog "goto tagalog")
   ("q" nil "quit"))
 (hydra-set-property 'hydra-pamparam :verbosity 1)
 
 (global-set-key (kbd "C-c v") 'hydra-pamparam/body)
 
-(setq pamparam-alist
-      '(("/home/user/dox/languages/tagalog/Tagalog.org"
-         . "/home/user/dox/languages/tagalog/Tagalog.pam")
-	("/home/user/dox/languages/latin/Latin.org"
-         . "/home/user/dox/languages/latin/Latin.pam")))
+(setq pamparam-path "/home/user/dox/pamparam/pamparam.pam")
 
 
 (provide 'pamparam)

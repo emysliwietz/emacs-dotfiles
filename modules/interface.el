@@ -168,7 +168,8 @@
 (if (>= emacs-major-version 27)
     (set-fontset-font t '(#x1f000 . #x1faff)
               (font-spec :family "Noto Color Emoji")))
-
+(set-face-attribute
+  'default nil :stipple nil :height 120 :width 'normal :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant 'normal :weight 'normal :foundry "outline" :family "Source Code Pro for Powerline")
 ;;;; setting up composition functions for emoji modifiers
 (dolist (items `(((?🇦 . ?🇿) [".[🇦-🇿]+" 0 font-shape-gstring])
                  ((?🏳 . ?🏴) [".[️‍🌈⚧☠󠀠-󠁿]*" 0 font-shape-gstring])
