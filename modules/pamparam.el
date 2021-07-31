@@ -1151,6 +1151,12 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
   (find-file "~/dox/pamparam/tagalog/Tagalog.pam")
   (pamparam-drill))
 
+(defun pamparam-magit-commit ()
+  (interactive)
+  (find-file "~/dox/pamparam/")
+  (magit)
+  )
+
 ;;* `hydra-pamparam'
 (defhydra hydra-pamparam (:exit t)
   "pam"
@@ -1159,7 +1165,7 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
   ("d" pamparam-drill "drill")
   ("s" pamparam-sync "sync")
   ("p" pamparam-pull "pull")
-  ("c" pamparam-commit "commit")
+  ("c" pamparam-magit-commit "commit")
   ("gl" pamparam-latin "goto latin")
   ("gt" pamparam-tagalog "goto tagalog")
   ("q" nil "quit"))
