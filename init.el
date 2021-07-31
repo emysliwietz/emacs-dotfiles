@@ -25,7 +25,7 @@
   ;; Languagetool grammar checking
 ;  (make-thread (require 'languagetool))
   ;; Org mode configuration
-  (make-thread (require 'org-mode))
+  (make-thread (require 'org-mode-tweaks))
   ;; Org bibtex references
   (make-thread (require 'org-latex-tweaks))
   ;; Org agenda
@@ -114,11 +114,23 @@
      (output-html "xdg-open")))
  '(custom-safe-themes
    '("f9aede508e587fe21bcfc0a85e1ec7d27312d9587e686a6f5afdbb0d220eab50" default))
- '(org-agenda-files '("~/dp/agenda/refile.org" "~/dp/agenda/uni.org"))
+ '(org-agenda-files nil)
+  '(org-emphasis-alist
+   (quote
+    (("*" bold)
+     ("/" italic)
+     ("_" underline)
+     ("=" org-verbatim verbatim)
+     ("~" org-code verbatim)
+     ("+"
+      (:strike-through t))
+     ("̅"
+      (:overline t)
+      verbatim))))
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe org-mouse ol-rmail ol-w3m org-checklist ol-man org-toc))
  '(package-selected-packages
-   '(lispy worf org-drill google-c-style flycheck-google-cpplint iedit iedit-mode flycheck-irony irony-eldoc company-irony-c-headers company-irony company-auctex svg-tag-mode quelpa winum xresources-theme mu4e-conversation company-tabnine company-jedi undo-tree org-ref idle-org-agenda org-timeline org-alert nginx-mode company-nginx docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
+   '(lispy org-drill google-c-style flycheck-google-cpplint iedit iedit-mode flycheck-irony irony-eldoc company-irony-c-headers company-irony company-auctex svg-tag-mode quelpa winum xresources-theme mu4e-conversation company-tabnine company-jedi undo-tree org-ref idle-org-agenda org-timeline org-alert nginx-mode company-nginx docker-compose-mode ligature ivy-emoji amx all-the-icons-ivy all-the-icons-ibuffer all-the-icons-ivy-rich ivy-rich ivy-avy dired-git-info dired-rainbow jupyter dired-collapse openwith dired-quick-sort projectile org-download spaceline-all-the-icons sentence-navigation flycheck ob-async ob-sagemath ob-latex-as-png ob-shell ob-ipython latex-extra frog-jump-buffer exwm-edit symon yasnippet-snippets which-key use-package-ensure-system-package try switch-window sudo-edit spaceline smex smartparens rainbow-mode rainbow-delimiters python-docstring py-autopep8 pretty-mode ox-reveal org-sidebar org-mime org-bullets nyan-mode noflet multiple-cursors mu4e-alert monokai-theme magit-gitflow linum-relative langtool ido-vertical-mode htmlize helpful fancy-battery exwm esup elpy diredfl diminish dashboard counsel company-quickhelp calfw-org calfw-ical calfw-cal calfw blacken beacon bash-completion avy auctex all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
