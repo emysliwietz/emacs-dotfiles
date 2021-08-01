@@ -7,7 +7,7 @@
   :ensure t
   :defer t
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 0))))
 
 ;;; Org sidebar
 (use-package org-sidebar
