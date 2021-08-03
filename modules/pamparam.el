@@ -1157,6 +1157,11 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
   (magit)
   )
 
+(defun pamparam-push ()
+  (interactive)
+  (async-shell-command "cd ~/dox/pamparam/ && ~/dox/pamparam/update.sh")
+  )
+
 ;;* `hydra-pamparam'
 (defhydra hydra-pamparam (:exit t)
   "pam"
@@ -1164,8 +1169,8 @@ If you have no more cards scheduled for today, use `pamparam-pull'."
   ("l" pamparam-drill-latin "latin")
   ("d" pamparam-drill "drill")
   ("s" pamparam-sync "sync")
-  ("p" pamparam-pull "pull")
-  ("c" pamparam-magit-commit "commit")
+  ("m" pamparam-pull "more cards")
+  ("p" pamparam-push "push")
   ("gl" pamparam-latin "goto latin")
   ("gt" pamparam-tagalog "goto tagalog")
   ("q" nil "quit"))
